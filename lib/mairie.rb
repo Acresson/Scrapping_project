@@ -1,7 +1,7 @@
 require 'rest-client'
 require 'nokogiri'
 require 'open-uri'
-def Scrapping_email
+def scrapping_email
 page = Nokogiri::HTML(RestClient.get("http://annuaire-des-mairies.com/val-d-oise.html"))
 
 
@@ -32,10 +32,12 @@ email_list << page.xpath("/html/body/div/main/section[2]/div/table/tbody/tr[4]/t
 new_email_list << email_list.flatten.map{|string| string.to_s.sub("<td>","").sub("</td>","")}
 end
 
-#Zip les tableaux pour en faire un hash k,v
+#Zip les tableaux pour en faire un hash puis .map pour en faire un array contenant des hash |k,v|Ville,Email
 hash_de_villes_et_email=Hash[name_villes_95.zip(new_email_list)] 
 array_global = hash_de_villes_et_email.map { |ville, email| {ville => email} }
 puts array_global
 
 end
+
+scrapping_email
 

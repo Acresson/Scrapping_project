@@ -17,7 +17,7 @@ def crypto_scrapper
 
   crypto_name_n_price=Hash[crypto_name.zip(crypto_price)] 
   crypto_liste = crypto_name_n_price.map { |nom, prix| {nom => prix} }
-  return crypto_liste
+  puts crypto_liste
 end 
 
 crypto_scrapper
